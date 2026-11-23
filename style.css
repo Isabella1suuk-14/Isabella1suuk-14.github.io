@@ -1,0 +1,210 @@
+/* Colors live here. Change these to restyle the whole site. */
+:root {
+  --bg: #edf0f3;
+  --ink: #0f1b2d;
+  --muted: #4f5d73;
+  --line: #c6cfda;
+  --accent: #2c38c9;
+  --surface: #f7f9fb;
+
+  --font-display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --font-body: "Public Sans", "Segoe UI", system-ui, sans-serif;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0e1420;
+    --ink: #e6ebf3;
+    --muted: #9aa7bc;
+    --line: #263247;
+    --accent: #9aa3ff;
+    --surface: #141c2b;
+  }
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; scroll-padding-top: 1.5rem; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 1.0625rem;
+  line-height: 1.65;
+}
+
+a { color: var(--accent); text-underline-offset: 3px; }
+a:hover { text-decoration-thickness: 2px; }
+a:focus-visible,
+.skip:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+.skip {
+  position: absolute;
+  left: 1rem;
+  top: -4rem;
+  background: var(--surface);
+  padding: 0.5rem 1rem;
+  z-index: 10;
+}
+.skip:focus { top: 1rem; }
+
+/* Layout: fixed sidebar on desktop, stacked on mobile */
+.layout {
+  display: grid;
+  grid-template-columns: 16rem minmax(0, 1fr);
+  gap: 4rem;
+  max-width: 68rem;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.side {
+  position: sticky;
+  top: 0;
+  align-self: start;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding: 3rem 0;
+}
+
+.name {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.5rem;
+  color: var(--ink);
+  text-decoration: none;
+  line-height: 1.2;
+}
+
+.role { margin: 0.25rem 0 2.5rem; color: var(--muted); }
+
+.side ul { list-style: none; margin: 0; padding: 0; }
+
+nav li a {
+  display: block;
+  padding: 0.35rem 0 0.35rem 1rem;
+  border-left: 2px solid var(--line);
+  color: var(--muted);
+  text-decoration: none;
+}
+nav li a:hover { color: var(--ink); }
+nav li a.active {
+  border-left-color: var(--accent);
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.social { margin-top: auto; display: flex; gap: 1.25rem; }
+.social a { color: var(--muted); }
+.social a:hover { color: var(--accent); }
+
+/* Content */
+main { padding: 3rem 0 4rem; max-width: 42rem; }
+
+.hero { padding-bottom: 3rem; }
+
+h1, h2, h3 {
+  font-family: var(--font-display);
+  line-height: 1.15;
+  margin: 0;
+}
+
+h1 {
+  font-size: clamp(2.4rem, 5vw, 3.6rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.lede {
+  font-size: 1.25rem;
+  color: var(--muted);
+  margin: 1.5rem 0 0;
+  max-width: 36rem;
+}
+
+section + section {
+  border-top: 1px solid var(--line);
+  padding-top: 2.5rem;
+  margin-top: 2.5rem;
+}
+
+h2 { font-size: 1.75rem; font-weight: 700; margin-bottom: 1rem; }
+h3 { font-size: 1.25rem; font-weight: 500; }
+
+p { margin: 0 0 1rem; }
+
+/* Definition lists used for Now and Skills */
+.facts { margin: 0; }
+.facts div {
+  display: grid;
+  grid-template-columns: 8rem 1fr;
+  gap: 1rem;
+  padding: 0.75rem 0;
+}
+.facts div + div { border-top: 1px solid var(--line); }
+.facts dt { font-weight: 600; }
+.facts dd { margin: 0; color: var(--muted); }
+
+/* Projects */
+.project {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 1rem;
+}
+.project-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1rem;
+  margin-bottom: 0.5rem;
+}
+.status {
+  font-size: 0.875rem;
+  color: var(--muted);
+  border: 1px solid var(--line);
+  border-radius: 99px;
+  padding: 0.05rem 0.7rem;
+  white-space: nowrap;
+}
+.stack { color: var(--muted); font-size: 0.95rem; margin-bottom: 0.5rem; }
+.project-links { margin: 0; display: flex; gap: 1.25rem; }
+
+footer { margin-top: 4rem; color: var(--muted); font-size: 0.95rem; }
+footer p { margin: 0; }
+
+/* Tablet and phone */
+@media (max-width: 52rem) {
+  .layout { grid-template-columns: 1fr; gap: 0; }
+
+  .side {
+    position: static;
+    height: auto;
+    padding: 1.5rem 0 0;
+  }
+  .role { margin-bottom: 1rem; }
+
+  nav ul { display: flex; flex-wrap: wrap; gap: 0.25rem 1.25rem; }
+  nav li a { border-left: 0; padding: 0.25rem 0; }
+  nav li a.active { text-decoration: underline; text-decoration-color: var(--accent); text-underline-offset: 6px; }
+
+  .social { margin-top: 1rem; }
+  main { padding-top: 2rem; }
+}
+
+@media (max-width: 34rem) {
+  .facts div { grid-template-columns: 1fr; gap: 0.1rem; }
+  .project-head { flex-direction: column; align-items: flex-start; gap: 0.4rem; }
+}
